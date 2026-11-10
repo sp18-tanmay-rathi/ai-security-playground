@@ -105,13 +105,3 @@ Start with a short executive summary, then:
 7. Limitations and untested areas
 
 Never claim that this skill certifies an application as secure.
-
-## Working in this playground repository
-
-When the target is this repository itself (a deterministic mock, no LLM or network):
-
-- Run tests: `uv run pytest`. Run the UI: `uv run streamlit run app.py` (starts a local server; ask first).
-- Attack corpus: `attacks/attack_cases.json` is the single source of truth. Each case needs `id`, `name`, `severity`, `kind`, `description`, `payload`, `safe_expected`. Loaded as `ATTACKS` in `target/agents.py`.
-- Adding a case: add it to the JSON, then add a canned response and evidence for its `kind` in both branches of `run_agent` in `target/agents.py`. Otherwise the run fails with a `KeyError`.
-- Flow: `app.py` → `engine/runner.run_suite` → `target/agents.run_agent` → `engine/evaluator.evaluate` → `engine/report.build_markdown_report`.
-- Limitation to state in any report: the protected mock selects its response by `kind`. It never inspects the payload, so its PASS results show the intended behavior. They are not evidence that a defense works.
