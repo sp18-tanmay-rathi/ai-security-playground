@@ -1,0 +1,4 @@
+AI Security Playground
+MVP: deterministic local demo, Streamlit UI, 5 attack cases, Markdown/JSON report,
+pytest tests, UV package configuration, Claude Code project skill.
+No external API required. No real tools or production targets are accessed.
